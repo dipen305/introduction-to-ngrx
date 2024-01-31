@@ -1,44 +1,34 @@
 import {Component, OnInit} from '@angular/core';
 import {Store} from '@ngrx/store';
-import {selectPhotos} from './store/photo.selectors';
-import {dislikePhoto, likePhoto, loadPhotos} from './store/photo.actions';
+import {selectPeople} from './store/people.selectors';
+import {loadPeople} from './store/people.actions';
 import {AppState} from './store/app.state';
-import {Photo} from './photo/photo';
+import {People} from './people/people';
 
 @Component({
   selector: 'app-root',
   template: `
-    <div class="photos">
-      <app-photo
-        *ngFor="let photo of photos$ | async; trackBy: trackById"
-        [photo]="photo"
-        (like)="onLike($event)"
-        (dislike)="onDislike($event)"
-        class="photo"
-      ></app-photo>
+    <div class="people-container">
+      <app-people
+        *ngFor="let people of people$ | async; trackBy: trackById"
+        [people]="people"
+        class="people"
+      ></app-people>
     </div>
   `,
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  photos$ = this.store.select(selectPhotos);
+  people$ = this.store.select(selectPeople);
 
   constructor(private store: Store<AppState>) {
   }
 
   ngOnInit(): void {
-    this.store.dispatch(loadPhotos());
+    this.store.dispatch(loadPeople());
   }
 
-  onLike(id: string): void {
-    this.store.dispatch(likePhoto({id}));
-  }
-
-  onDislike(id: string): void {
-    this.store.dispatch(dislikePhoto({id}));
-  }
-
-  trackById(index: number, item: Photo): string {
-    return item.id;
+  trackById(index: number, item: People): string {
+    return item.name;
   }
 }

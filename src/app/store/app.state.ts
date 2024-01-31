@@ -1,3 +1,3 @@
-import {PhotoRootState} from './photo.reducer';
+import {PeopleRootState} from './people.reducer';
 
-export type AppState = PhotoRootState; /* & OtherRootState  & ... */
+export type AppState = PeopleRootState; /* & OtherRootState  & ... */

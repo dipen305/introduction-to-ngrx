@@ -4,10 +4,10 @@ import {MatBadgeModule} from '@angular/material/badge';
 import {MatButtonModule} from '@angular/material/button';
 import {MatCardModule} from '@angular/material/card';
 import {MatIconModule} from '@angular/material/icon';
-import { PhotoComponent } from './photo.component';
+import { PeopleComponent } from './people.component';
 
 @NgModule({
-  declarations: [PhotoComponent],
+  declarations: [PeopleComponent],
   imports: [
     CommonModule,
     MatCardModule,
@@ -15,6 +15,6 @@ import { PhotoComponent } from './photo.component';
     MatIconModule,
     MatBadgeModule
   ],
-  exports: [PhotoComponent]
+  exports: [PeopleComponent]
 })
-export class PhotoModule { }
+export class PeopleModule { }

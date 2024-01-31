@@ -1,16 +1,16 @@
-import {NgModule} from '@angular/core';
-import {BrowserModule} from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
 
-import {AppComponent} from './app.component';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {PhotoModule} from './photo/photo.module';
-import {StoreModule} from '@ngrx/store';
-import {photoReducer} from './store/photo.reducer';
-import {StoreDevtoolsModule} from '@ngrx/store-devtools';
-import {environment} from '../environments/environment';
+import { AppComponent } from './app.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { StoreModule } from '@ngrx/store';
+import { peopleReducer } from './store/people.reducer';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
 import { EffectsModule } from '@ngrx/effects';
-import {PhotoEffects} from './store/photo.effects';
-import {ApiModule} from './api/api.module';
+import { PeopleEffects } from './store/people.effects';
+import { ApiModule } from './api/api.module';
+import { PeopleModule } from './people/people.module';
 
 @NgModule({
   declarations: [
@@ -19,17 +19,17 @@ import {ApiModule} from './api/api.module';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    PhotoModule,
+    PeopleModule,
     StoreModule.forRoot({
-        photo: photoReducer
-      },
+      people: peopleReducer
+    },
       {}
     ),
     StoreDevtoolsModule.instrument({
       maxAge: 25, // Retains last 25 states
       logOnly: environment.production, // Restrict extension to log-only mode
     }),
-    EffectsModule.forRoot([PhotoEffects]),
+    EffectsModule.forRoot([PeopleEffects]),
     ApiModule
   ],
   providers: [],
